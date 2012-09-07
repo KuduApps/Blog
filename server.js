@@ -15,7 +15,7 @@ function queueCreatedOrExists(error) {
      res.write('Using queue ' + queueName + '\r\n'); 
 queueService.createMessage(queueName, "Hello world!", null, messageCreated);
 } else { 
-  res.end('Could not use queue: ' + error.Code); 
+  res.end('Could not use queue: ' + error); 
 } 
 } 
 
@@ -25,7 +25,7 @@ function messageCreated(error, serverQueue) {
    queueService.peekMessages(queueName, null, messagePeeked);
 
   } else { 
-    res.end('Could not insert message into queue: ' + error.Code); 
+    res.end('Could not insert message into queue: ' + error); 
   }
 }
 
@@ -35,7 +35,7 @@ function messagePeeked(error, serverMessages) {
    queueService.getMessages(queueName, null, messageGot);
 
 } else { 
-res.end('Could not peek into queue: ' + error.Code); 
+res.end('Could not peek into queue: ' + error); 
 } } 
 
 function messageGot(error, serverMessages) {
@@ -44,13 +44,13 @@ function messageGot(error, serverMessages) {
  // Process the message in less than 30 seconds, and then delete it
  queueService.deleteMessage(queueName, serverMessages[0].messageid, serverMessages[0].popreceipt, null, messageDeleted);
  } else {
- res.end('Could not get message: ' + error.Code); 
+ res.end('Could not get message: ' + error); 
 } } 
 function messageDeleted(error) {
  if(error === null){
  res.end('Successfully deleted message from queue ' + queueName + ' \r\n');
  } else {
- res.end('Could not delete message: ' + error.Code);
+ res.end('Could not delete message: ' + error);
  } } 
 
 }).listen(port);
