@@ -3,6 +3,6 @@
   , "description": "Queue CRUD sanity test"
   , "version": "1.0.0"
   , "dependencies": {
-        "azure": "~0.5"
+        "azure": "~0.6"
     }
 }
