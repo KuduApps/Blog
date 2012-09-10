@@ -6,6 +6,7 @@ var blobService = azure.createBlobService();
 var queueService = azure.createQueueService();
 var tableService = azure.createTableService();
 var queueName = 'taskqueue';
+var newVar = 'value1';
 
 http.createServer(function (req, res) {
     queueService.createQueueIfNotExists(queueName, null, queueCreatedOrExists); 
